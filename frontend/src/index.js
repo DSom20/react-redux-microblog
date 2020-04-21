@@ -5,22 +5,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import rootReducer from './redux/rootReducer';
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    // Not checking for "Chrome" to see whether to actually use devtools caused
-    // app to not run in Safari
-    // See https://github.com/reduxjs/redux/issues/2033
-    window.navigator.userAgent.includes('Chrome')
-      ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-      : compose,
-  ),
-);
+const enhancers = [applyMiddleware(thunk)];
+const composedEnhancers = composeWithDevTools(...enhancers);
+const store = createStore(rootReducer, composedEnhancers);
 
 ReactDOM.render(
   <Provider store={store}>
