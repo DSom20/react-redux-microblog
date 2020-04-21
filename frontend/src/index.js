@@ -13,8 +13,13 @@ const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+    // Not checking for "Chrome" to see whether to actually use devtools caused
+    // app to not run in Safari
+    // See https://github.com/reduxjs/redux/issues/2033
+    window.navigator.userAgent.includes('Chrome')
+      ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+      : compose,
+  ),
 );
 
 ReactDOM.render(
