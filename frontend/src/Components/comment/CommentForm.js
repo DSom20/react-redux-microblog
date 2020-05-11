@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addCommentToApi } from '../Components/redux/actions';
+import { addCommentToApi } from '../../redux/actions';
 import { Form, Button } from 'react-bootstrap';
 
 function CommentForm ({ postId }) {

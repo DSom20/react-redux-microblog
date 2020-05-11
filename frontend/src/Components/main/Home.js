@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BlogPostList from '../post/BlogPostList';
-import { useSelector, useDispatch } from 'react-redux';
-import { getTitlesFromApi } from '../redux/actions';
 import { Jumbotron, Container, Button, Card } from 'react-bootstrap';
 import './Home.css';
 import { LinkContainer } from 'react-router-bootstrap'
 
 function Home() {
-  const [ranDispatch, setRanDispatch] = useState(false);
-  const [noTitles, setNoTitles] = useState(false);
-  let titles = useSelector(st => st.titles);
-  const dispatch = useDispatch();
+  // const [ranDispatch, setRanDispatch] = useState(false);
+  // const [noTitles, setNoTitles] = useState(false);
+  // let titles = useSelector(st => st.titles);
+  // console.log({titles});
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const runDispatch = async () => {
-      await dispatch(getTitlesFromApi());
-      setRanDispatch(true);
-    }
+  // useEffect(() => {
+  //   const runDispatch = async () => {
+  //     await dispatch(getTitlesFromApi());
+  //     setRanDispatch(true);
+  //   }
 
-    if (titles.length === 0 && !ranDispatch) runDispatch();
-    if (titles.length === 0 && ranDispatch) setNoTitles(true);
-  }, [ranDispatch, dispatch, titles])
+  //   if (titles.length === 0 && !ranDispatch) runDispatch();
+  //   if (titles.length === 0 && ranDispatch) setNoTitles(true);
+  // }, [ranDispatch, dispatch, titles])
 
-  let mainContentJSX;
+  // let mainContentJSX;
 
-  if (noTitles) {
-    mainContentJSX = <p>Make the first post!</p>;
-  } else if (titles.length === 0) {
-    mainContentJSX = <p>Loading Posts...</p>;
-  } else {
-    mainContentJSX = <BlogPostList />;
-  }
+  // if (noTitles) {
+  //   mainContentJSX = <p>Make the first post!</p>;
+  // } else if (titles.length === 0) {
+  //   mainContentJSX = <p>Loading Posts...</p>;
+  // } else {
+  //   mainContentJSX = <BlogPostList />;
+  // }
 
   return (
     <Container className="Home">
@@ -50,9 +49,7 @@ function Home() {
         </div>
         <p className="site-description-subtext my-0">[One rule: be kind. When everyone's an administrator, no one is :) ]</p>
       </Card>
-      {
-        mainContentJSX
-      }
+      <BlogPostList />
     </Container>
   )
 }

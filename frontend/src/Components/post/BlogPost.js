@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom'
 import NotFound from '../main/NotFound'
 import BlogForm from './BlogForm';
-import Comments from '../../comment/Comments';
+import Comments from '../comment/Comments';
 import { useSelector, useDispatch } from 'react-redux';
-import { deletePostFromApi, getPostFromApi, voteForPost } from '../redux/actions';
+import { deletePostFromApi, getPostFromApi, voteForPost } from '../../redux/actions';
 import { Container, Card } from 'react-bootstrap';
 import './BlogPost.css';
 
@@ -14,7 +14,8 @@ function BlogPost() {
   const [inEditMode, setInEditMode] = useState(false);
   const [postNotFound, setPostNotFound] = useState(false);
   const [ranDispatch, setRanDispatch] = useState(false);
-  const { postId } = useParams()
+  // Caused hidden bugs in reducer comparing int Id to string Id if don't convert postId to number here
+  const postId = Number(useParams().postId);  
   let post = useSelector(st => st.posts[postId]);
   const dispatch = useDispatch();
   // console.log({ranDispatch})

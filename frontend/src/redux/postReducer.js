@@ -47,10 +47,21 @@ function postReducer(state = {}, action) {
       }
 
     case UPDATE_VOTES:
-      return {
-        ...state,
-        [action.id]: { ...state[action.id], votes: action.votes }
-      };
+      // The if clause prevents a vote from the Home/titles page adding the post
+      // to the store with solely a vote property. This would cause an error if then
+      // try to go to that post display page because it would see the post exists
+      // in the store and not try to fetch it from API, but it's an incomplete
+      // data entry, which causes its properties to not display and even causes
+      // the comment list to error out since it's trying to map over undefined
+      // post.comments
+      if (state[action.id]) {
+        return {
+          ...state,
+          [action.id]: { ...state[action.id], votes: action.votes }
+        };
+      } else {
+        return state;
+      }
 
 
     default:

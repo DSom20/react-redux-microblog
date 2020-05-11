@@ -1,16 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import BlogPostCard from './BlogPostCard';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTitlesFromApi } from '../../redux/actions';
 import Row from 'react-bootstrap/Row';
 import './BlogPostList.css'
 
-
+/*
+  Selects titles from redux store. But immediately updates the store
+  upon mounting with a API fetch. Thus will update if ppl vote on the titles
+*/
 function BlogPostList() {
   const titles = useSelector(st => st.titles);
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(function() {
+    async function fetchTitle() {
+      await dispatch(getTitlesFromApi());
+      setIsLoading(false);
+    }
 
-  const sortedTitles = titles.sort((a, b) => b.votes - a.votes)
+    if (isLoading) {
+      fetchTitle();
+    }
 
-  const blogPostListJSX = sortedTitles.map(title => (
+  }, [dispatch, isLoading]);
+
+  if (isLoading) return <b>Loading Posts...</b>;
+
+  if (!isLoading && titles.length === 0) {
+    return <b>Make the first post!</b>;
+  }
+
+  const blogPostListJSX = titles.map(title => (
     <BlogPostCard
       key={title.id}
       id={title.id}

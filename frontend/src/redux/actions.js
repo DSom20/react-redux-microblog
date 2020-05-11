@@ -51,11 +51,10 @@ export function getTitlesFromApi() {
 export function addPostToApi(postData) {
   return async dispatch => {
     try {
+      // API endpoint does NOT return [] for comments
       const postResponse = (await axios.post(`${BASE_URL}/posts`, postData)).data;
-      const { body, ...title } = postResponse;
       const post = {...postResponse, comments: []};
       dispatch(addPost(post));
-      dispatch(addTitle(title));
     }
     catch (err) {
       dispatch(addError(err.response.data));
@@ -66,11 +65,9 @@ export function addPostToApi(postData) {
 export function editPostInApi(id, postData) {
   return async dispatch => {
     try {
-      const postResponse = (await axios.put(`${BASE_URL}/posts/${id}`, postData)).data;
-      const { body, ...title } = postResponse;
-      const post = {...postResponse, comments: []};
+      // API endpoint DOES return comments, even [] if none yet
+      const post = (await axios.put(`${BASE_URL}/posts/${id}`, postData)).data;
       dispatch(editPost(id, post));
-      dispatch(editTitle(id, title));
     }
     catch (err) {
       dispatch(addError(err.response.data));
@@ -83,7 +80,6 @@ export function deletePostFromApi(id) {
     try {
       await axios.delete(`${BASE_URL}/posts/${id}`);
       dispatch(deletePost(id));
-      dispatch(deleteTitle(id));
     }
     catch (err) {
       dispatch(addError(err.response.data));

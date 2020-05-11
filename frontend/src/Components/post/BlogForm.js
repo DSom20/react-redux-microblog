@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { addPostToApi, editPostInApi } from '../redux/actions';
+import { addPostToApi, editPostInApi } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import { Container, Form, Button } from 'react-bootstrap';
 import './BlogForm.css';
