@@ -50,7 +50,7 @@ function BlogForm({ setInEditMode, post, postId }) {
   return (
     <Container className="BlogForm">
       <h2>New Post</h2>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group >
           <Form.Label>Title: </Form.Label>
           <Form.Control 

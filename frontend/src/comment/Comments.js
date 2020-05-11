@@ -1,7 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
-import ListGroup from 'react-bootstrap/ListGroup'
+import { Row, Col, ListGroup } from 'react-bootstrap'
 
 function Comments({ postId, comments }) {
   // const comments = useSelector(st => st.posts[postId].comments);
@@ -12,12 +12,15 @@ function Comments({ postId, comments }) {
 
   return (
     <div>
-      <h2>Comments</h2>
-      <ListGroup>
-
-      {commentsListJSX}
-      </ListGroup>
-      <CommentForm postId={postId}/>
+      <h2 className="mb-3">Comments</h2>
+      <Row>
+        <Col xs={12} lg={10} xl={9}>
+          <ListGroup className="mb-3">
+            {commentsListJSX}
+          </ListGroup>
+          <CommentForm postId={postId}/>
+        </Col>
+      </Row>
     </div>
   )
 }

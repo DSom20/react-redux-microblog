@@ -20,7 +20,9 @@ function BlogPost() {
 
   useEffect(() => {
     const runDispatch = async () => {
+      console.log("in blogPost runDispatch")
       await dispatch(getPostFromApi(postId));
+      console.log("in blogPost runDispatch after api call awaited")
       setRanDispatch(true);
     }
 
@@ -31,7 +33,9 @@ function BlogPost() {
 
 
   const handleDelete = async () => {
-    await dispatch(deletePostFromApi(postId))
+    console.log("in handle delete")
+    await dispatch(deletePostFromApi(+postId))
+    console.log("in handle delete after awaited api")
     history.push('/');
   };
 

@@ -9,10 +9,8 @@ function Comment({ comment, postId }) {
 
   return (
     <ListGroup.Item className="p-2">
-      {/* <div className="d-inline-flex border border-light p-2"> */}
-        <i onClick={() => dispatch(deleteCommentFromApi(postId, id))} className="text-warning fas fa-times"></i>
-        <span>{text}</span>
-      {/* </div> */}
+        <i onClick={() => dispatch(deleteCommentFromApi(postId, id))} className="align-bottom text-warning fas fa-times"></i>
+        <span className="ml-3">{text}</span>
     </ListGroup.Item>
   )
 }

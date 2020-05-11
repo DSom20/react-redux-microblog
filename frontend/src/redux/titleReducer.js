@@ -11,7 +11,6 @@ function titleReducer(state = [], action) {
 
   switch (action.type) {
     case INITIALIZE_TITLES:
-      console.log("ACTION TITLES", action.titles)
       return action.titles;
 
     case ADD_TITLE:

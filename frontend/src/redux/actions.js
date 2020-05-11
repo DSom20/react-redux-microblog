@@ -16,6 +16,14 @@ import axios from 'axios';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5000/api";
 
+
+// Error to watch out for:
+// postId and commentId are stored as numbers, but when I'm grabbing postId
+// from component to send into a dispatch, I get it through useParams. Should
+// coerce to number all the time...
+// the deleteTitle() action as part of deletePostFromApi was actually deleting
+// the title from the store because of this bug
+
 export function getPostFromApi(id) {
   return async dispatch => {
     try {

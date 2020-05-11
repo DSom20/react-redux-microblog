@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCommentToApi } from '../redux/actions';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 
 function CommentForm ({ postId }) {
   const INITIAL_STATE = {text: ''};
@@ -20,15 +21,29 @@ function CommentForm ({ postId }) {
     }
   }
 
+  // Noticed that with a single input form, if press enter while focused on
+  // input, and have onSubmit on Form, it will submit, regardless of whether a
+  // button exists. Multi-input forms dont seem to do this...
+  // Also, the button wasn't triggering onSubmit. Had own onClick handler at first,
+  // but that seems excessive/redundant. Found out explicitly setting type="submit"
+  // works...
   return (
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="New Comment"
-          value={formData.text}
-          onChange={handleChange}
-        />
-        <button disabled={!formData.text}>Add</button>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <div className="d-flex">
+          <div className="flex-grow-1" >
+            <Form.Control 
+            type="text"
+            placeholder="New Comment"
+            value={formData.text}
+            onChange={handleChange}
+            style={{borderBottomRightRadius: "0", borderTopRightRadius: "0"}}
+            />
+          </div>
+          <div className="flex-grow-0">
+            <Button type="submit" disabled={!formData.text} style={{borderBottomLeftRadius: "0", borderTopLeftRadius: "0"}}>Add</Button>
+          </div>
+        </div>
+      </Form>
   )
 }
 
