@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addCommentToApi } from '../../redux/actions';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, InputGroup } from 'react-bootstrap';
 
 function CommentForm ({ postId }) {
   const INITIAL_STATE = {text: ''};
@@ -29,22 +29,38 @@ function CommentForm ({ postId }) {
   // works...
   return (
       <Form onSubmit={handleSubmit}>
-        <div className="d-flex">
-          <div className="flex-grow-1" >
+        <InputGroup >
             <Form.Control 
             type="text"
-            placeholder="New Comment"
+            placeholder="Enter New Comment"
+            aria-label="Add New Comment"
             value={formData.text}
             onChange={handleChange}
             style={{borderBottomRightRadius: "0", borderTopRightRadius: "0"}}
             />
-          </div>
-          <div className="flex-grow-0">
+          <InputGroup.Append>
             <Button type="submit" disabled={!formData.text} style={{borderBottomLeftRadius: "0", borderTopLeftRadius: "0"}}>Add</Button>
-          </div>
-        </div>
+          </InputGroup.Append>
+        </InputGroup>
       </Form>
   )
 }
 
 export default CommentForm;
+
+
+// Version before I saw InputGroup to append button to input
+/* <div className="d-flex">
+  <div className="flex-grow-1" >
+    <Form.Control 
+    type="text"
+    placeholder="New Comment"
+    value={formData.text}
+    onChange={handleChange}
+    style={{borderBottomRightRadius: "0", borderTopRightRadius: "0"}}
+    />
+  </div>
+  <div className="flex-grow-0">
+    <Button type="submit" disabled={!formData.text} style={{borderBottomLeftRadius: "0", borderTopLeftRadius: "0"}}>Add</Button>
+  </div>
+</div> */
