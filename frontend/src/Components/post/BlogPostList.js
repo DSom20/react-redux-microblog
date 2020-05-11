@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogPostCard from './BlogPostCard';
 import { useSelector } from 'react-redux';
-import { CardDeck, Row, Col } from 'react-bootstrap';
+import Row from 'react-bootstrap/Row';
 import './BlogPostList.css'
 
 

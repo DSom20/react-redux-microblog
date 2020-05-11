@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteCommentFromApi } from '../redux/actions';
-import { Card, ListGroup } from 'react-bootstrap';
+import { deleteCommentFromApi } from '../Components/redux/actions';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 function Comment({ comment, postId }) {
   const dispatch = useDispatch();

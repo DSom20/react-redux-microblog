@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addCommentToApi } from '../redux/actions';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import { addCommentToApi } from '../Components/redux/actions';
+import { Form, Button } from 'react-bootstrap';
 
 function CommentForm ({ postId }) {
   const INITIAL_STATE = {text: ''};

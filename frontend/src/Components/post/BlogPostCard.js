@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { voteForPost } from '../redux/actions';
-import { Card } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
 import './BlogPostCard.css';
 
 
@@ -15,6 +15,7 @@ function BlogPostCard({ id, title, description, votes }) {
     dispatch(voteForPost(id, direction));
   }
 
+  // Should maybe use Col instead of div technically, but then have to mess more with margins...
   return (
     <div className="BlogPostCard-wrapper mb-4">
       <Card className="BlogPostCard h-100 text-left">

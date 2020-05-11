@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import BlogPostList from './post/BlogPostList';
+import BlogPostList from '../post/BlogPostList';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTitlesFromApi } from './redux/actions';
+import { getTitlesFromApi } from '../redux/actions';
 import { Jumbotron, Container, Button, Card } from 'react-bootstrap';
 import './Home.css';
-import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap'
 
 function Home() {

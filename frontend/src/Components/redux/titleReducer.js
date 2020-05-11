@@ -30,7 +30,7 @@ function titleReducer(state = [], action) {
       ));
 
     default:
-      console.warn("This action type is not valid", action.type);
+      // console.warn("This action type is not valid", action.type);
       return state;
   }
 }
