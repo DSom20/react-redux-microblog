@@ -1,5 +1,5 @@
 import React from 'react';
-import BlogForm from '../post/BlogForm';
+import NewBlogPost from '../post/NewBlogPost';
 import BlogPost from '../post/BlogPost';
 import Home from './Home';
 import NotFound from './NotFound';
@@ -10,7 +10,7 @@ function Routes() {
   return (
     <Switch >
       <Route exact path="/posts/new">
-        <BlogForm />
+        <NewBlogPost />
       </Route>
       <Route path="/posts/:postId">
         <BlogPost />
