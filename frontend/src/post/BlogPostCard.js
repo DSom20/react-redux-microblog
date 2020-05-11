@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { voteForPost } from '../redux/actions';
+import { Card } from 'react-bootstrap';
 import './BlogPostCard.css';
 
 
@@ -15,14 +16,20 @@ function BlogPostCard({ id, title, description, votes }) {
   }
 
   return (
-    <div className="BlogPostCard">
-      <Link to={`/posts/${id}`} className="BLogPostCard-title">{title}</Link>
-      <span className="BlogPostCard-description">{description}</span>
-      <div className="BlogPostCard-voteWrapper">
-        <span className="BlogPostCard-votes">{votes}</span>
-        <i onClick={() => handleVote("up")} className="fas fa-thumbs-up"></i>
-        <i onClick={() => handleVote("down")} className="fas fa-thumbs-down"></i>
-      </div>
+    <div className="BlogPostCard-wrapper mb-4">
+      <Card className="BlogPostCard h-100 text-left">
+        <Card.Body className='position-relative'>
+          <Link to={`/posts/${id}`} className="title d-inline-block mb-2 stretched-link">{title}</Link>
+          <div className="font-italic">{description}</div>
+        </Card.Body>
+        <Card.Footer>
+          <div className="voteWrapper">
+            <span className="votes">{votes} Votes:</span>
+            <i onClick={() => handleVote("up")} className="ml-3 text-success fas fa-thumbs-up"></i>
+            <i onClick={() => handleVote("down")} className="ml-2 align-middle text-danger fas fa-thumbs-down"></i>
+          </div>
+        </Card.Footer>
+      </Card>
     </div>
   )
 }

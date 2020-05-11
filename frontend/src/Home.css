@@ -3,10 +3,28 @@
 }
 
 .Home-header {
-  font-size: 30px;
+  /* font-size: 30px; */
   margin: 20px;
 }
 
-.Home > p {
+/* .Home > p {
   font-size: 20px;
+} */
+
+.Home .site-description p {
+  font-size: 16px;
+  line-height: 1.2;
+  margin-bottom: .8rem;
+}
+.Home .site-description-subtext {
+  font-size: 14px;
+}
+
+@media (min-width: 576px) {
+  .Home .site-description p {
+    font-size: 20px;
+  }
+  .Home .site-description-subtext {
+    font-size: 16px;
+  }
 }

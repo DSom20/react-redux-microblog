@@ -1,6 +1,7 @@
 import React from 'react';
 import BlogPostCard from './BlogPostCard';
 import { useSelector } from 'react-redux';
+import { CardDeck, Row, Col } from 'react-bootstrap';
 import './BlogPostList.css'
 
 
@@ -20,9 +21,9 @@ function BlogPostList() {
   ));
 
   return (
-    <div className="BlogPostList">
+    <Row xs={1} md={2} lg={3}className="BlogPostList">
       {blogPostListJSX}
-    </div>
+    </Row>
   )
 }
 

@@ -1,6 +1,26 @@
 .BlogPostCard {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
   width: 60%;
-  border:
+  border: */
+  /* height: 100%; */
+  /* text-align: left; */
+  box-shadow: 0 2px 2px rgba(99, 99, 99, 0.372);
+  transition: all .1s;
+}
+
+.BlogPostCard:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 4px 3px rgba(99, 99, 99, 0.372);
+}
+
+.BlogPostCard .title {
+  font-size: 18px;
+}
+.BlogPostCard .description {
+}
+
+.BlogPostCard i {
+  cursor: pointer;
+  font-size: 24px;
 }

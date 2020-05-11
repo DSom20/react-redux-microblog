@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { addPostToApi, editPostInApi } from '../redux/actions';
 import { useDispatch } from 'react-redux';
+import { Container, Form, Button } from 'react-bootstrap';
+import './BlogForm.css';
 
 
-function BlogForm({ showEditForm, post, postId }) {
+function BlogForm({ setInEditMode, post, postId }) {
   const INITIAL_STATE = post ?
     {
       title: post.title,
@@ -14,7 +16,7 @@ function BlogForm({ showEditForm, post, postId }) {
     :
     {
       title: '',
-      description: undefined,
+      description: '',
       body: ''
     };
 
@@ -35,7 +37,7 @@ function BlogForm({ showEditForm, post, postId }) {
     if (isValid) {
       if (post) {
         dispatch(editPostInApi(postId, formData));
-        showEditForm(false);
+        setInEditMode(false);
       } else {
         dispatch(addPostToApi(formData));
         history.push('/');
@@ -46,36 +48,44 @@ function BlogForm({ showEditForm, post, postId }) {
   const isValid = Object.values(formData).every(val => val);
 
   return (
-    <div>
+    <Container className="BlogForm">
       <h2>New Post</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='title'>Title: </label>
-        <input
-          id="title"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="description">Description: </label>
-        <input
-          id="description"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="body">Body: </label>
-        <textarea
-          id="body"
-          name="body"
-          value={formData.body}
-          onChange={handleChange}
-        />
-        <button disabled={!isValid}>Save</button>
-        <button onClick={() => history.push('/')}>Cancel</button>
-      </form>
-    </div >
+      <Form>
+        <Form.Group >
+          <Form.Label>Title: </Form.Label>
+          <Form.Control 
+            type="text" 
+            placeholder="Enter title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group >
+          <Form.Label>Description: </Form.Label>
+          <Form.Control 
+            type="text" 
+            placeholder="Enter description / subtitle"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group >
+          <Form.Label>Body: </Form.Label>
+          <Form.Control 
+            as="textarea" 
+            placeholder="Enter the meaty core of your deepest ruminations"
+            rows="5"
+            name="body"
+            value={formData.body}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Button disabled={!isValid} onClick={handleSubmit}>Save</Button>
+        <Button variant="secondary" onClick={() => history.push('/')} className="ml-2">Cancel</Button>
+      </Form>
+    </Container>
   )
 }
 
