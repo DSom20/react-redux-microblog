@@ -1,7 +1,15 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card'
+import { Card, Popover, OverlayTrigger, Button } from 'react-bootstrap';
 
 function BlogPostDisplay({ post, toggleEdit, handleVote, handleDelete }) {
+  const popoverToConfirmDelete = (
+    <Popover id="popover-delete">
+      <Popover.Title>Do you REALLY want to delete this blog post?</Popover.Title>
+      <Popover.Content className="text-center">
+        <Button onClick={handleDelete}>Yes, DELETE!</Button>
+      </Popover.Content>
+    </Popover>
+  )
   return (
     <div className="mb-4">
       <h2>{post.title}</h2>
@@ -11,7 +19,9 @@ function BlogPostDisplay({ post, toggleEdit, handleVote, handleDelete }) {
         <Card className="p-2 flex-row justify-content-center align-items-center" style={{width: "90px"}}>
           <div>
             <i onClick={toggleEdit} className=" text-primary fas fa-edit"></i>
-            <i onClick={handleDelete} className="ml-3 text-warning fas fa-times"></i>
+            <OverlayTrigger rootClose trigger="click" placement="right" overlay={popoverToConfirmDelete}>
+              <i className="ml-3 text-warning fas fa-times"></i>
+            </OverlayTrigger>
           </div>
         </Card>
         <Card className="ml-4 p-2 flex-row justify-content-center align-items-center">
