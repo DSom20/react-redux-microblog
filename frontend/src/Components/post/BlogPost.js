@@ -38,8 +38,11 @@ function BlogPost() {
   // the end of that data fetch, we setRanDispatch -> changes state of this component.
   // BUT, by then history.push('/') has ran and the component has unmounted, hence
   // the console warning React gave me.
-  // So, can fix it with the mounted variable as shown. Could also redo the
-  // ranDispatch logic probably. See https://www.debuggr.io/react-update-unmounted-component/
+  // So, can fix it with the mounted variable as shown. If component gets unmounted
+  // before the api request is done, then the cleanup fx will run and set mounted=false,
+  // which will prevent the runDispathc fx from running setRanDispatch once api request
+  // finishes. See https://www.debuggr.io/react-update-unmounted-component/
+  // Really...should just redo the ranDispatch logic probably. 
   useEffect(() => {
     let mounted = true;
     const runDispatch = async () => {
