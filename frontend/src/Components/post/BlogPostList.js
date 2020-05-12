@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import BlogPostCard from './BlogPostCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTitlesFromApi } from '../../redux/actions';
@@ -7,8 +7,7 @@ import Row from 'react-bootstrap/Row';
 import './BlogPostList.css'
 
 /*
-  Selects titles from redux store. But immediately updates the store
-  upon mounting with a API fetch. Thus will update if ppl vote on the titles
+  Selects titles from redux store. If none, then fetches from API.
 */
 function BlogPostList() {
   const titles = useSelector(st => st.titles);

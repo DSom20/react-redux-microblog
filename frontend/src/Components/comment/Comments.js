@@ -12,7 +12,7 @@ function Comments({ postId, comments }) {
   );
 
   return (
-    <div flipKey={comments.length} className="Comments">
+    <div className="Comments">
       <h2 className="mb-3">Comments</h2>
       <Row>
         <Col xs={12} lg={10} xl={9}>

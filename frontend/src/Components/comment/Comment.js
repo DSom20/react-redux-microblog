@@ -4,7 +4,7 @@ import { deleteCommentFromApi } from '../../redux/actions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import './Comment.css';
 
-function Comment({ comment, postId, ...restOfProps }) {
+function Comment({ comment, postId }) {
   const [isExiting, setIsExiting] = useState(false);
   const timerId = useRef(null);
   const dispatch = useDispatch();
@@ -17,10 +17,10 @@ function Comment({ comment, postId, ...restOfProps }) {
       ), 500);
     }
     return () => clearTimeout(timerId.current);
-  }, [isExiting]);
+  }, [isExiting, dispatch, id, postId]);
 
   return (
-    <ListGroup.Item className={`Comment p-2 ${isExiting ? "fadeOut" : ''}`} {...restOfProps} >
+    <ListGroup.Item className={`Comment p-2 ${isExiting ? "fadeOut" : ''}`} >
         <i onClick={() => setIsExiting(true)} className="align-bottom text-warning fas fa-times"></i>
         <span className="ml-3">{text}</span>
     </ListGroup.Item>
