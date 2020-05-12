@@ -28,7 +28,7 @@ function titleReducer(state = [], action) {
       return sortByVote([...state, makeTitleFromPost(action.post)]);
 
     case DELETE_POST:
-      return state.filter(title => title.id !== action.postId);
+      return state.filter(title => title.id !== action.id);
     
     case EDIT_POST:
       return state.map(title => title.id === action.post.id

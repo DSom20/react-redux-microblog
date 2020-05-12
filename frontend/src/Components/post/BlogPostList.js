@@ -1,7 +1,8 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useEffect, useState, useRef }  from 'react';
 import BlogPostCard from './BlogPostCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTitlesFromApi } from '../../redux/actions';
+import { Flipper, Flipped } from 'react-flip-toolkit'
 import Row from 'react-bootstrap/Row';
 import './BlogPostList.css'
 
@@ -11,8 +12,15 @@ import './BlogPostList.css'
 */
 function BlogPostList() {
   const titles = useSelector(st => st.titles);
+  const titlesRef = useRef(titles);
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(!titles.length);
+
+  useEffect(() => {
+    console.log(titlesRef.current === titles);
+    console.log(titles)
+    titlesRef.current = titles;
+  }, [titles])
   
   useEffect(function() {
     async function fetchTitle() {
@@ -33,19 +41,23 @@ function BlogPostList() {
   }
 
   const blogPostListJSX = titles.map(title => (
-    <BlogPostCard
-      key={title.id}
-      id={title.id}
-      title={title.title}
-      description={title.description}
-      votes={title.votes}
-      />
+    <Flipped key={title.id} flipId={title.id}>
+      <BlogPostCard
+        key={title.id}
+        id={title.id}
+        title={title.title}
+        description={title.description}
+        votes={title.votes}
+        />
+    </Flipped>
   ));
 
   return (
-    <Row xs={1} md={2} lg={3}className="BlogPostList">
-      {blogPostListJSX}
-    </Row>
+    <Flipper flipKey={"hi"}>
+      <Row xs={1} md={2} lg={3}className="BlogPostList">
+        {blogPostListJSX}
+      </Row>
+    </Flipper>
   )
 }
 
