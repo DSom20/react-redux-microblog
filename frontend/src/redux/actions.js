@@ -1,5 +1,6 @@
 import {
   INITIALIZE_TITLES,
+  FETCH_POST,
   ADD_POST,
   EDIT_POST,
   DELETE_POST,
@@ -25,7 +26,7 @@ export function getPostFromApi(id) {
   return async dispatch => {
     try {
       const post = (await axios.get(`${BASE_URL}/posts/${id}`)).data;
-      dispatch(addPost(post));
+      dispatch(getPost(post));
     }
     catch (err) {
       dispatch(addError(err.response.data));
@@ -117,6 +118,13 @@ export function voteForPost(id, direction) {
     catch (err) {
       dispatch(addError(err.response.data));
     }
+  }
+}
+
+function getPost(post) {
+  return {
+    type: FETCH_POST,
+    post
   }
 }
 

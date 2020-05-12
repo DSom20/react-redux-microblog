@@ -1,4 +1,5 @@
 import {
+  FETCH_POST,
   ADD_POST,
   EDIT_POST,
   DELETE_POST,
@@ -11,6 +12,9 @@ function postReducer(state = {}, action) {
   let updatedComments;
 
   switch (action.type) {
+    case FETCH_POST:
+      return { ...state, [action.post.id]: action.post };
+
     case ADD_POST:
       return { ...state, [action.post.id]: action.post };
 

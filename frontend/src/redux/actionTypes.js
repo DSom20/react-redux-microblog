@@ -3,6 +3,7 @@ export const ADD_TITLE = "ADD_TITLE";
 export const EDIT_TITLE = "EDIT_TITLE";
 export const DELETE_TITLE = "DELETE_TITLE";
 
+export const FETCH_POST = "FETCH_POST";
 export const ADD_POST = "ADD_POST";
 export const EDIT_POST = "EDIT_POST";
 export const DELETE_POST = "DELETE_POST";
