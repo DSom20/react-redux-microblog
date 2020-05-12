@@ -1,8 +1,5 @@
 import {
   INITIALIZE_TITLES,
-  ADD_TITLE,
-  EDIT_TITLE,
-  DELETE_TITLE,
   ADD_POST,
   EDIT_POST,
   DELETE_POST,
@@ -135,27 +132,6 @@ function initializeTitles(titles) {
   return {
     type: INITIALIZE_TITLES,
     titles
-  }
-}
-
-function addTitle(title) {
-  return {
-    type: ADD_TITLE,
-    title
-  }
-}
-
-function editTitle(title) {
-  return {
-    type: EDIT_TITLE,
-    title
-  }
-}
-
-function deleteTitle(id) {
-  return {
-    type: DELETE_TITLE,
-    id
   }
 }
 

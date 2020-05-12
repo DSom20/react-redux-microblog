@@ -6,7 +6,7 @@ import Comments from '../comment/Comments';
 import BlogPostDisplay from './BlogPostDisplay';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletePostFromApi, getPostFromApi, voteForPost, editPostInApi } from '../../redux/actions';
-import { Container, Card } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 import './BlogPost.css';
 
 

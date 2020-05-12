@@ -37,7 +37,7 @@ function Home() {
         <h1 className="Home-header mx-0">Welcome to <b>Microblog</b></h1>
         <h3>The best open source blog on the web</h3>
         <hr/>
-        <Button as={Link} exact to="/posts/new">Add a new post!</Button>
+        <Button as={Link} exact="true" to="/posts/new">Add a new post!</Button>
       </Jumbotron>
       <Card bg="light" className="px-4 py-4 mb-4">
         <div className="site-description">
