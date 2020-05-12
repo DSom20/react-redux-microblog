@@ -24,10 +24,10 @@ function BlogPostDisplay({ post, toggleEdit, handleVote, handleDelete }) {
             </OverlayTrigger>
           </div>
         </Card>
-        <Card className="ml-4 p-2 flex-row justify-content-center align-items-center">
+        <Card className="ml-4 px-3 py-2 flex-row justify-content-center align-items-center">
           <span>{post.votes} Votes:</span>
-          <i onClick={() => handleVote("up")} className="ml-3 mt-n2 text-success fas fa-thumbs-up"></i>
-          <i onClick={() => handleVote("down")} className="ml-3 mt-2 align-bottom text-danger fas fa-thumbs-down"></i>
+          <i onClick={() => handleVote("up")} className="ml-2 mt-n2 text-success fas fa-thumbs-up"></i>
+          <i onClick={() => handleVote("down")} className="ml-2 mt-2 align-bottom text-danger fas fa-thumbs-down"></i>
         </Card>
       </div>
     </div>

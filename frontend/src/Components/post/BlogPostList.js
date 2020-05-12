@@ -12,15 +12,11 @@ import './BlogPostList.css'
 */
 function BlogPostList() {
   const titles = useSelector(st => st.titles);
-  const titlesRef = useRef(titles);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(!titles.length);
-
-  useEffect(() => {
-    console.log(titlesRef.current === titles);
-    console.log(titles)
-    titlesRef.current = titles;
-  }, [titles])
+  // Used for Flipper flipKey. Only care to transition if order
+  // actually changed, so base its key off of title order
+  const titlesOrder = titles.map(title => title.id).join();
   
   useEffect(function() {
     async function fetchTitle() {
@@ -41,7 +37,7 @@ function BlogPostList() {
   }
 
   const blogPostListJSX = titles.map(title => (
-    <Flipped key={title.id} flipId={title.id}>
+    <Flipped key={title.id} flipId={title.id} spring="stiff">
       <BlogPostCard
         key={title.id}
         id={title.id}
@@ -53,7 +49,7 @@ function BlogPostList() {
   ));
 
   return (
-    <Flipper flipKey={"hi"}>
+    <Flipper flipKey={titlesOrder}>
       <Row xs={1} md={2} lg={3}className="BlogPostList">
         {blogPostListJSX}
       </Row>
@@ -62,3 +58,19 @@ function BlogPostList() {
 }
 
 export default BlogPostList;
+
+
+
+// My first idea for getting flipperId based off of titles changing
+
+// This little section is all for the Flipper flipKey.
+// It needs to be different when state changes, takes string/bool/number.
+// 
+// const previousTitles = useRef(titles);
+// const flipperId = useRef(1);
+// if (previousTitles.current !== titles) {
+//   flipperId.current += 1;
+// }
+// useEffect(() => {
+//   previousTitles.current = titles;
+// }, [titles])

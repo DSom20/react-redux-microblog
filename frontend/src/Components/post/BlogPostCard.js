@@ -8,7 +8,7 @@ import './BlogPostCard.css';
 
 
 
-function BlogPostCard({ id, title, description, votes }) {
+function BlogPostCard({ id, title, description, votes, ...restOfProps }) {
   const dispatch = useDispatch();
 
   const handleVote = (direction) => {
@@ -17,7 +17,7 @@ function BlogPostCard({ id, title, description, votes }) {
 
   // Should maybe use Col instead of div technically, but then have to mess more with margins...
   return (
-    <div className="BlogPostCard-wrapper mb-4">
+    <div {...restOfProps} className="BlogPostCard-wrapper mb-4">
       <Card className="BlogPostCard h-100 text-left">
         <Card.Body className='position-relative'>
           <Link to={`/posts/${id}`} className="title d-inline-block mb-2 stretched-link">{title}</Link>
