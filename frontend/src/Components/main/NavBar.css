@@ -1,19 +1,9 @@
-.NavBar {
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--alt-bg-color);
-  padding: 8px;
+/* Total hack to ignore navlink active style. Very brittle... Just overwriting the
+one rule so it has the same color as non-active elements in navbar-dark scheme...*/
+.NavBar.navbar-dark .navbar-nav .nav-link.active {
+  color: rgba(255,255,255,.5);
 }
 
-.NavBar a {
-  color: var(--main-text-color);
-  text-decoration: none;
-}
-
-.NavBar a.active {
-  border-bottom: 3px dotted var(--alt-color);
-}
-
-.NavBar a:hover {
-  color: var(--alt-text-color);
+.NavBar.navbar-dark .navbar-nav .nav-link.rrActive {
+  color: white;
 }
