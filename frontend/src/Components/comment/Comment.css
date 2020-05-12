@@ -1,0 +1,10 @@
+.Comment.fadeOut{
+  animation: fadeOut .5s forwards;
+  animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+
+@keyframes fadeOut {
+  0% { opacity: 1}
+  100% { opacity: 0; }
+}
